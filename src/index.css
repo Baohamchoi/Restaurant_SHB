@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  @apply px-6 py-2 font-medium rounded transition duration-300;
+}
+
+.btn-primary {
+  @apply bg-primary text-white hover:bg-amber-600;
+}
+
+.section-title {
+  @apply text-3xl font-bold mb-8 text-center;
+}
+
+.section-padding {
+  @apply py-16;
+}

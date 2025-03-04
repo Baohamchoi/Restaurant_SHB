@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DishCard from "./DishCard";
-import { categories } from "../data/dishes";
+import { categories } from "../../data/dishes";
 
 const DishGrid = ({ dishes }) => {
   const [activeCategory, setActiveCategory] = useState("All");

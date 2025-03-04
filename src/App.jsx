@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Header";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
-import About from "./components/About";
-import Blog from "./components/Blog";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
 import Footer from "./components/Footer";
-import DishDetailPage from "./components/DishDetailPage";
-import Contact from "./components/Contact";
-import Login from "./components/Login";
+import DishDetailPage from "./components/menu/DishDetailPage";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { dishes } from "../data/dishes";
+import { dishes } from "../../data/dishes";
 
 const DishDetailPage = () => {
   const { id } = useParams();

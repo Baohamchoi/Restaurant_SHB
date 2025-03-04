@@ -9,7 +9,7 @@ const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
       <img
         src={imagePlaceholder}
         alt="imagePlaceholder"
-        className="h-48 bg-gray-300 flex items-center justify-center w-full"
+        className="w-full h-48 object-cover"
       />
       <div className="p-4">
         <span className="text-sm text-gray-500">{date}</span>

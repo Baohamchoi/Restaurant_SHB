@@ -6,11 +6,15 @@ const Navbar = () => {
     <nav className="bg-black text-white py-4 px-6 flex justify-between items-center">
       <div className="flex items-center gap-2">
         <div className="text-amber-500">
-          <ChefHat size={40} strokeWidth={1.5} />
+          <Link to="/">
+            <ChefHat size={40} strokeWidth={1.5} />
+          </Link>
         </div>
         <div className="text-2xl font-bold">
-          <span className="text-amber-500">Resto</span>
-          <span className="text-amber-700">Nest</span>
+          <Link to="/">
+            <span className="text-amber-500">Resto</span>
+            <span className="text-amber-700">Nest</span>
+          </Link>
         </div>
       </div>
 

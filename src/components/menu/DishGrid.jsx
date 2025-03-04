@@ -14,7 +14,7 @@ const DishGrid = ({ dishes }) => {
     <div>
       <div className="flex flex-wrap justify-center gap-4 mb-8">
         {categories.map((category) => (
-          <button
+          <button 
             key={category.id}
             className={`px-4 py-2 rounded-full ${
               activeCategory === category.name

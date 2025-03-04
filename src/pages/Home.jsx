@@ -5,11 +5,13 @@ import Services from "../components/home/Services";
 import AboutSection from "../components/home/AboutSection";
 import BlogSection from "../components/home/BlogSection";
 import Reservation from "../components/home/Reservation";
+import Features from "../components/home/Features";
 
 const Home = () => {
   return (
     <div>
       <Hero />
+      <Features />
       <PopularDishes />
       <Services />
       <AboutSection />

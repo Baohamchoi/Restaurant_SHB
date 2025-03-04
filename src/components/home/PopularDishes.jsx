@@ -38,7 +38,6 @@ const PopularDishes = () => {
             />
           ))}
         </div>
-        ;
       </div>
     </div>
   );

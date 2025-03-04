@@ -4,8 +4,7 @@ export const dishes = [
     name: "Classic Burger",
     price: 8.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image1.png",
     description:
       "Our signature burger with 100% beef patty, lettuce, tomato, onions, pickles, and our special sauce on a toasted sesame seed bun.",
     ingredients: [
@@ -24,8 +23,7 @@ export const dishes = [
     name: "Cheese Burger",
     price: 9.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image2.png",
     description:
       "Classic burger topped with melted American cheese for that extra flavor.",
     ingredients: [
@@ -45,8 +43,7 @@ export const dishes = [
     name: "Bacon Burger",
     price: 11.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image3.png",
     description:
       "Juicy beef patty topped with crispy bacon, cheddar cheese, and all the classic fixings.",
     ingredients: [
@@ -67,8 +64,7 @@ export const dishes = [
     name: "Chicken Burger",
     price: 10.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1606755962773-d324e0a13086?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image4.png",
     description:
       "Marinated chicken breast grilled to perfection, served with lettuce, tomato, and mayo on a soft bun.",
     ingredients: [
@@ -85,8 +81,7 @@ export const dishes = [
     name: "Veggie Burger",
     price: 9.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1520072959219-c595dc870360?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image5.png",
     description:
       "Plant-based patty with fresh vegetables and vegan mayo, perfect for vegetarians.",
     ingredients: [
@@ -104,8 +99,7 @@ export const dishes = [
     name: "Double Cheeseburger",
     price: 13.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image6.png",
     description:
       "Two juicy beef patties with double cheese, perfect for those with a big appetite.",
     ingredients: [
@@ -125,8 +119,7 @@ export const dishes = [
     name: "BBQ Burger",
     price: 12.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1513185041617-8ab03f83d6c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image7.png",
     description:
       "Beef patty smothered in BBQ sauce, topped with onion rings and cheddar cheese.",
     ingredients: [
@@ -144,8 +137,7 @@ export const dishes = [
     name: "Mushroom Swiss Burger",
     price: 12.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image8.png",
     description:
       "Beef patty topped with sautéed mushrooms and melted Swiss cheese.",
     ingredients: [
@@ -164,8 +156,7 @@ export const dishes = [
     name: "Spicy Jalapeño Burger",
     price: 11.99,
     category: "Burger",
-    image:
-      "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image9.png",
     description:
       "For those who like it hot! Beef patty with jalapeños, pepper jack cheese, and spicy mayo.",
     ingredients: [
@@ -184,8 +175,7 @@ export const dishes = [
     name: "French Fries",
     price: 3.99,
     category: "Sides",
-    image:
-      "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image10.png",
     description: "Crispy golden fries, perfectly salted and served hot.",
     ingredients: ["Potatoes", "Salt", "Vegetable oil"],
     tags: ["Side", "Classic"],
@@ -195,8 +185,7 @@ export const dishes = [
     name: "Onion Rings",
     price: 4.99,
     category: "Sides",
-    image:
-      "https://images.unsplash.com/photo-1639024471283-03518883512d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image11.png",
     description:
       "Thick-cut onion rings in a crispy batter, served with dipping sauce.",
     ingredients: ["Onions", "Batter", "Vegetable oil", "Dipping sauce"],
@@ -207,8 +196,7 @@ export const dishes = [
     name: "Milkshake",
     price: 5.99,
     category: "Drinks",
-    image:
-      "https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image12.png",
     description:
       "Creamy milkshake available in vanilla, chocolate, or strawberry flavors.",
     ingredients: ["Ice cream", "Milk", "Whipped cream", "Cherry"],
@@ -219,8 +207,7 @@ export const dishes = [
     name: "Soft Drink",
     price: 2.99,
     category: "Drinks",
-    image:
-      "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image13.png",
     description: "Refreshing soft drinks with free refills.",
     ingredients: ["Carbonated water", "Syrup", "Ice"],
     tags: ["Cold", "Refreshing"],
@@ -230,8 +217,7 @@ export const dishes = [
     name: "Chicken Tenders",
     price: 7.99,
     category: "Sides",
-    image:
-      "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image14.png",
     description:
       "Crispy chicken tenders served with your choice of dipping sauce.",
     ingredients: [
@@ -247,8 +233,7 @@ export const dishes = [
     name: "Caesar Salad",
     price: 6.99,
     category: "Salads",
-    image:
-      "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=500&q=80",
+    image: "../images/image15.png",
     description:
       "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan cheese.",
     ingredients: [

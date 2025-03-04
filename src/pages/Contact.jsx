@@ -1,5 +1,16 @@
 import React from 'react'
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix for default marker icons in react-leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+});
 
 const ContactInfo = ({ icon, title, details }) => {
   return (
@@ -16,6 +27,9 @@ const ContactInfo = ({ icon, title, details }) => {
 }
 
 const Contact = () => {
+  // RestoNest Paris location (fictional)
+  const position = [48.851, 2.307]; // Near Rue Dalou, Paris
+
   return (
     <div className="bg-gray-100 py-16">
       <div className="container mx-auto px-4">
@@ -31,7 +45,7 @@ const Contact = () => {
                   <label className="block text-gray-700 mb-2">Your Name</label>
                   <input 
                     type="text" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500"
                     placeholder="John Doe"
                   />
                 </div>
@@ -39,7 +53,7 @@ const Contact = () => {
                   <label className="block text-gray-700 mb-2">Your Email</label>
                   <input 
                     type="email" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -48,18 +62,18 @@ const Contact = () => {
                 <label className="block text-gray-700 mb-2">Subject</label>
                 <input 
                   type="text" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500"
                   placeholder="How can we help you?"
                 />
               </div>
               <div className="mb-6">
                 <label className="block text-gray-700 mb-2">Your Message</label>
                 <textarea 
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-primary h-32"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500 h-32"
                   placeholder="Write your message here..."
                 ></textarea>
               </div>
-              <button type="submit" className="bg-primary hover:bg-amber-600 text-white px-6 py-3 rounded font-medium">
+              <button type="submit" className="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded font-medium">
                 Send Message
               </button>
             </form>
@@ -71,35 +85,49 @@ const Contact = () => {
             <ContactInfo 
               icon={<FaMapMarkerAlt size={20} />}
               title="Our Location"
-              details="123 Restaurant Street, Food City, FC 12345"
+              details="5 Rue Dalou, 75015 Paris, France"
             />
             <ContactInfo 
               icon={<FaPhone size={20} />}
               title="Phone Number"
-              details="+1 (555) 123-4567"
+              details="+33 156 78 89 56"
             />
             <ContactInfo 
               icon={<FaEnvelope size={20} />}
               title="Email Address"
-              details="info@restorestaurant.com"
+              details="restonest@mail.com"
             />
             <ContactInfo 
               icon={<FaClock size={20} />}
               title="Opening Hours"
-              details="Monday - Friday: 8:00 AM - 10:00 PM
-                      Saturday: 9:00 AM - 11:00 PM
-                      Sunday: 10:00 AM - 9:00 PM"
+              details={"Mon - Fri: 7:00am - 10:00pm\nSat: 7:00am - 6:00pm\nSun: 8:00am - 6:00pm"}
             />
             
-            {/* Map Placeholder */}
-            <div className="mt-8 bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-              <span className="text-gray-500">Map Placeholder</span>
+            {/* Map */}
+            <div className="mt-8 rounded-lg overflow-hidden h-64 shadow-md">
+              <MapContainer 
+                center={position} 
+                zoom={15} 
+                style={{ height: '100%', width: '100%' }}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={position}>
+                  <Popup>
+                    <b>RestoNest</b><br />
+                    5 Rue Dalou, 75015 Paris<br />
+                    Authentic French Cuisine
+                  </Popup>
+                </Marker>
+              </MapContainer>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Contact

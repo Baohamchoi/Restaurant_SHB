@@ -1,11 +1,20 @@
-import React from 'react'
+import React from 'react';
+
+import blog1 from '../images/Blog/blog1.jpg'; 
+import blog2 from '../images/Blog/blog2.jpg'; 
+import blog3 from '../images/Blog/blog3.jpg'; 
 
 const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {/* Image Placeholder - Replace with your own image */}
+      {/* Image Placeholder with lazy loading */}
       <div className="h-48 bg-gray-300 flex items-center justify-center">
-        <span className="text-gray-500">Image Placeholder</span>
+        <img 
+          src={imagePlaceholder} 
+          alt="Blog Image" 
+          className="w-full h-full object-fit-cover"
+          loading="lazy"  // Lazy loading for images
+        />
       </div>
       <div className="p-4">
         <span className="text-sm text-gray-500">{date}</span>
@@ -14,37 +23,34 @@ const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
         <a href="#" className="text-primary font-medium hover:underline">Read More</a>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Blog = () => {
+  const blogPosts = [
+    { image: blog1, date: "June 15, 2023", title: "The Art of Cooking Perfect Steaks", excerpt: "Learn the secrets to cooking the perfect steak from our expert chefs." },
+    { image: blog2, date: "May 28, 2023", title: "Seasonal Ingredients", excerpt: "Discover the best seasonal ingredients to use in your summer recipes." },
+    { image: blog3, date: "April 10, 2023", title: "Wine Pairing Essentials", excerpt: "Master the basics of wine pairing to enhance your dining experience." }
+  ];
+
   return (
     <div className="section-padding bg-gray-100">
       <div className="container mx-auto px-4">
         <h2 className="section-title">Latest From Our Blog</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <BlogCard 
-            imagePlaceholder="blog1.jpg"
-            date="June 15, 2023"
-            title="The Art of Cooking Perfect Steaks"
-            excerpt="Learn the secrets to cooking the perfect steak from our expert chefs."
-          />
-          <BlogCard 
-            imagePlaceholder="blog2.jpg"
-            date="May 28, 2023"
-            title="Seasonal Ingredients for Summer"
-            excerpt="Discover the best seasonal ingredients to use in your summer recipes."
-          />
-          <BlogCard 
-            imagePlaceholder="blog3.jpg"
-            date="April 10, 2023"
-            title="Wine Pairing Essentials"
-            excerpt="Master the basics of wine pairing to enhance your dining experience."
-          />
+          {blogPosts.map((post, index) => (
+            <BlogCard 
+              key={index}
+              imagePlaceholder={post.image} 
+              date={post.date}
+              title={post.title}
+              excerpt={post.excerpt}
+            />
+          ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

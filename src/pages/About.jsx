@@ -1,5 +1,17 @@
-import React from 'react'
-import { FaUtensils, FaLeaf, FaWineGlassAlt, FaCoffee } from 'react-icons/fa'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaUtensils, FaLeaf, FaWineGlassAlt, FaCoffee } from 'react-icons/fa';
+import about1 from '../images/About/Background.png'; // Đúng đường dẫn ảnh background
+import chef1 from '../images/About/chef1.jpg';  // Sửa đường dẫn đến thư mục About
+import chef2 from '../images/About/chef2.jpg';
+import chef3 from '../images/About/chef3.jpg';
+import chef4 from '../images/About/chef4.jpg';
+import gallery1 from '../images/About/gallery1.webp';  // Đưa vào 6 ảnh từ thư mục About
+import gallery2 from '../images/About/gallery2.jpg';
+import gallery3 from '../images/About/gallery3.webp';
+import gallery4 from '../images/About/gallery4.jpg';
+import gallery5 from '../images/About/gallery5.jpg';
+import gallery6 from '../images/About/gallery6.webp';
 
 const FeatureItem = ({ icon, title }) => {
   return (
@@ -9,29 +21,29 @@ const FeatureItem = ({ icon, title }) => {
       </div>
       <h3 className="font-medium">{title}</h3>
     </div>
-  )
-}
+  );
+};
 
 const ChefCard = ({ imagePlaceholder, name, role }) => {
   return (
     <div className="text-center">
       {/* Chef Image Placeholder */}
       <div className="bg-gray-300 h-48 w-48 rounded-full mx-auto mb-4 flex items-center justify-center">
-        <span className="text-gray-500">Chef Image</span>
+        <img src={imagePlaceholder} alt={name} className="w-full h-full object-cover rounded-full" />
       </div>
       <h3 className="font-semibold text-lg">{name}</h3>
       <p className="text-gray-600">{role}</p>
     </div>
-  )
-}
+  );
+};
 
-const GalleryImage = () => {
+const GalleryImage = ({ imageSrc }) => {
   return (
     <div className="bg-gray-300 h-40 rounded-lg flex items-center justify-center">
-      <span className="text-gray-500">Gallery Image</span>
+      <img src={imageSrc} alt="Gallery Image" className="w-full h-full object-cover rounded-lg" />
     </div>
-  )
-}
+  );
+};
 
 const About = () => {
   return (
@@ -47,7 +59,9 @@ const About = () => {
           <p className="text-lg mb-8 max-w-2xl mx-auto">
             We are dedicated to providing an exceptional dining experience with the finest ingredients and traditional recipes.
           </p>
-          <button className="btn btn-primary">Explore Menu</button>
+          <Link to="/menu">
+            <button className="btn btn-primary">Explore Menu</button>
+          </Link>
         </div>
       </div>
 
@@ -81,7 +95,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Image Placeholder */}
             <div className="bg-gray-300 h-80 rounded-lg flex items-center justify-center">
-              <span className="text-gray-500">Restaurant Image</span>
+              <img src={about1} alt="" />
             </div>
             
             <div>
@@ -106,22 +120,22 @@ const About = () => {
           <h2 className="text-3xl font-bold mb-12 text-center">Meet Our Professional Chefs</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <ChefCard 
-              imagePlaceholder="chef1.jpg"
+              imagePlaceholder={chef1}
               name="John Doe"
               role="Executive Chef"
             />
             <ChefCard 
-              imagePlaceholder="chef2.jpg"
+              imagePlaceholder={chef2}
               name="Jane Smith"
               role="Pastry Chef"
             />
             <ChefCard 
-              imagePlaceholder="chef3.jpg"
+              imagePlaceholder={chef3}
               name="Michael Brown"
               role="Sous Chef"
             />
             <ChefCard 
-              imagePlaceholder="chef4.jpg"
+              imagePlaceholder={chef4}
               name="Sarah Johnson"
               role="Head Chef"
             />
@@ -134,12 +148,12 @@ const About = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">View Our Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <GalleryImage />
-            <GalleryImage />
-            <GalleryImage />
-            <GalleryImage />
-            <GalleryImage />
-            <GalleryImage />
+            <GalleryImage imageSrc={gallery1} />
+            <GalleryImage imageSrc={gallery2} />
+            <GalleryImage imageSrc={gallery3} />
+            <GalleryImage imageSrc={gallery4} />
+            <GalleryImage imageSrc={gallery5} />
+            <GalleryImage imageSrc={gallery6} />
           </div>
         </div>
       </div>
@@ -195,7 +209,7 @@ const About = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;

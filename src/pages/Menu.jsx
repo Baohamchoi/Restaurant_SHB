@@ -1,5 +1,5 @@
 import React from "react";
-import DishGrid from "../components/DishGrid";
+import DishGrid from "../components/menu/DishGrid";
 import { dishes } from "../data/dishes";
 
 const MenuPage = () => {

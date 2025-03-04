@@ -1,5 +1,6 @@
 import React from "react";
-import a from "../../images/Image.png";
+import { Link } from "react-router-dom";
+import image from "../../images/home/hero.png";
 
 const Hero = () => {
   return (
@@ -15,15 +16,18 @@ const Hero = () => {
             Simply dummy text of the printing and typesetting industry. Lorem
             Ipsum has been the industry's standard dummy.
           </p>
-          <button className="bg-black text-white hover:bg-gray-800 font-medium py-3 px-8 rounded-md">
+          <Link
+            to={`/menu`}
+            className="bg-black text-white hover:bg-gray-800 font-medium py-3 px-8 rounded-md"
+          >
             View Menu
-          </button>
+          </Link>
         </div>
 
         <div className="relative">
           <div className="relative z-10 rounded-lg overflow-hidden ">
             <img
-              src={a}
+              src={image}
               alt="Restaurant interior"
               className="w-full h-full object-cover"
             />

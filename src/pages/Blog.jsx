@@ -13,7 +13,7 @@ const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
           src={imagePlaceholder} 
           alt="Blog Image" 
           className="w-full h-full object-fit-cover"
-          loading="lazy"  // Lazy loading for images
+          loading="lazy"
         />
       </div>
       <div className="p-4">

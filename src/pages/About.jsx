@@ -12,6 +12,7 @@ import gallery3 from '../images/About/gallery3.webp';
 import gallery4 from '../images/About/gallery4.jpg';
 import gallery5 from '../images/About/gallery5.jpg';
 import gallery6 from '../images/About/gallery6.webp';
+import background_introduce from '../images/About/background_introduce.jpg'; // Đúng đường dẫn ảnh background
 
 const FeatureItem = ({ icon, title }) => {
   return (
@@ -49,9 +50,16 @@ const About = () => {
   return (
     <div className="font-poppins">
       {/* Hero Section */}
-      <div className="relative bg-gray-900 text-white py-20">
+      <div className="relative bg-gray-900 text-white py-20" 
+        style={{
+          backgroundImage: `url(${background_introduce})`,
+          backgroundPosition: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 88%', // Kéo ảnh xuống dưới
+          backgroundRepeat: 'no-repeat'
+          }}>
         {/* Background Image Placeholder */}
-        <div className="absolute inset-0 bg-black opacity-70">
+        <div className="absolute inset-0 bg-black opacity-70 bg-cover bg-center">
           {/* This div is for the dark overlay on the image */}
         </div>
         <div className="relative container mx-auto px-4 text-center">

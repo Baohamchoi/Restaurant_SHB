@@ -28,7 +28,7 @@ const ContactInfo = ({ icon, title, details }) => {
 
 const Contact = () => {
   // RestoNest Paris location (fictional)
-  const position = [48.851, 2.307]; // Near Rue Dalou, Paris
+  const position = [48.851, 2.307];
 
   return (
     <div className="bg-gray-100 py-16">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaExclamationCircle, FaUser, FaSignOutAlt } from "react-icons/fa";
-import { useAuth } from "../components/menu/Context"; // Import the auth context hook
+import { useAuth } from "../components/menu/Context"; 
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,10 +15,10 @@ const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  const { isLoggedIn, currentUser, login, logout } = useAuth(); // Use the auth context
+  const { isLoggedIn, currentUser, login, logout } = useAuth();
   const navigate = useNavigate();
 
-  // Check for remembered user when component mounts
+
   useEffect(() => {
     const savedData = localStorage.getItem("rememberedUser");
     if (savedData) {
@@ -32,7 +32,6 @@ const Login = () => {
     }
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -48,27 +47,26 @@ const Login = () => {
     }
   };
 
-  // Form validation with localStorage check
+
   const validateForm = () => {
     const newErrors = {};
 
     if (!isLogin && !formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = "Vui lòng nhập họ và tên";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = "Vui lòng nhập email";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
+      newErrors.email = "Email không hợp lệ";
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = "Vui lòng nhập mật khẩu";
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = "Mật khẩu phải có ít nhất 6 ký tự";
     }
 
-    // Check credentials against localStorage in login mode
     if (isLogin) {
       const usersData = localStorage.getItem("usersData");
       const users = usersData ? JSON.parse(usersData) : [];
@@ -77,57 +75,55 @@ const Login = () => {
         const user = users.find((user) => user.email === formData.email);
         if (user) {
           if (user.password !== formData.password) {
-            newErrors.password = "Incorrect password";
+            newErrors.password = "Mật khẩu không chính xác";
           }
         } else {
-          newErrors.email = "No account found with this email";
+          newErrors.email = "Không tìm thấy tài khoản với email này";
         }
       } else {
-        newErrors.email = "No registered accounts found";
+        newErrors.email = "Không có tài khoản nào được đăng ký";
       }
     } else {
-      // Check if email already exists when registering
+
       const usersData = localStorage.getItem("usersData");
       const users = usersData ? JSON.parse(usersData) : [];
 
       if (users.some((user) => user.email === formData.email)) {
-        newErrors.email = "Email already registered";
+        newErrors.email = "Email đã được đăng ký";
       }
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
+};
 
-  // Handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     if (validateForm()) {
       setIsSubmitting(true);
-
+  
       setTimeout(() => {
         console.log("Form submitted:", formData);
+  
 
-        // Get existing users
         const usersData = localStorage.getItem("usersData");
         const users = usersData ? JSON.parse(usersData) : [];
-
+  
         let userData;
-
+  
         if (isLogin) {
-          // Login logic
-          userData = users.find((user) => user.email === formData.email);
 
-          // Update last login time
+          userData = users.find((user) => user.email === formData.email);
+  
           const updatedUsers = users.map((u) =>
             u.email === formData.email
               ? { ...u, lastLogin: new Date().toISOString() }
               : u
           );
           localStorage.setItem("usersData", JSON.stringify(updatedUsers));
-
-          // Remember user if checkbox is checked
+  
           if (formData.rememberMe) {
             localStorage.setItem(
               "rememberedUser",
@@ -139,8 +135,16 @@ const Login = () => {
           } else {
             localStorage.removeItem("rememberedUser");
           }
+  
+          login(userData);
+  
+          setIsSubmitting(false);
+          setLoginSuccess(true);
+  
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
         } else {
-          // Register logic
           userData = {
             email: formData.email,
             password: formData.password,
@@ -148,30 +152,25 @@ const Login = () => {
             registrationDate: new Date().toISOString(),
             lastLogin: new Date().toISOString(),
           };
-
-          // Add new user
+  
           users.push(userData);
           localStorage.setItem("usersData", JSON.stringify(users));
+  
+          setIsSubmitting(false);
+          setLoginSuccess(true);
+  
+          setTimeout(() => {
+            setIsLogin(!isLogin)
+          }, 1500);
         }
-
-        // Use the context's login function
-        login(userData);
-
-        setIsSubmitting(false);
-        setLoginSuccess(true);
-
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
       }, 1000);
     }
   };
+  
 
-  // Handle logout
   const handleLogout = () => {
-    logout(); // Use the context's logout function
+    logout(); 
 
-    // Clear form if not remembered
     if (!formData.rememberMe) {
       setFormData({
         name: "",
@@ -190,7 +189,6 @@ const Login = () => {
     setLoginSuccess(false);
   };
 
-  // Reset form when switching between login and register
   useEffect(() => {
     setErrors({});
     setLoginSuccess(false);
@@ -214,7 +212,6 @@ const Login = () => {
         });
       }
     } else {
-      // Clear form for registration
       setFormData({
         name: "",
         email: "",
@@ -307,7 +304,7 @@ const Login = () => {
                             className={`w-full pl-10 pr-4 py-3 border ${
                               errors.name ? "border-red-500" : "border-gray-300"
                             } rounded-lg focus:outline-none focus:border-primary`}
-                            placeholder="John Doe"
+                            placeholder="username"
                           />
                           {errors.name && (
                             <div className="flex items-center text-red-500 mt-1 text-sm">

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  FaExclamationCircle,
-  FaUser,
-  FaSignOutAlt
-} from "react-icons/fa";
+import { FaExclamationCircle, FaUser, FaSignOutAlt } from "react-icons/fa";
+import { useAuth } from "../components/menu/Context"; // Import the auth context hook
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,20 +14,12 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
 
+  const { isLoggedIn, currentUser, login, logout } = useAuth(); // Use the auth context
   const navigate = useNavigate();
 
-  // Check if user is already logged in when component mounts
+  // Check for remembered user when component mounts
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("currentUser");
-    if (loggedInUser) {
-      const user = JSON.parse(loggedInUser);
-      setCurrentUser(user);
-      setIsLoggedIn(true);
-    }
-    
     const savedData = localStorage.getItem("rememberedUser");
     if (savedData) {
       const parsedData = JSON.parse(savedData);
@@ -83,9 +72,9 @@ const Login = () => {
     if (isLogin) {
       const usersData = localStorage.getItem("usersData");
       const users = usersData ? JSON.parse(usersData) : [];
-      
+
       if (users.length > 0) {
-        const user = users.find(user => user.email === formData.email);
+        const user = users.find((user) => user.email === formData.email);
         if (user) {
           if (user.password !== formData.password) {
             newErrors.password = "Incorrect password";
@@ -100,8 +89,8 @@ const Login = () => {
       // Check if email already exists when registering
       const usersData = localStorage.getItem("usersData");
       const users = usersData ? JSON.parse(usersData) : [];
-      
-      if (users.some(user => user.email === formData.email)) {
+
+      if (users.some((user) => user.email === formData.email)) {
         newErrors.email = "Email already registered";
       }
     }
@@ -123,50 +112,50 @@ const Login = () => {
         // Get existing users
         const usersData = localStorage.getItem("usersData");
         const users = usersData ? JSON.parse(usersData) : [];
-        
+
+        let userData;
+
         if (isLogin) {
           // Login logic
-          const user = users.find(user => user.email === formData.email);
-          
+          userData = users.find((user) => user.email === formData.email);
+
           // Update last login time
-          const updatedUsers = users.map(u => 
-            u.email === formData.email ? {...u, lastLogin: new Date().toISOString()} : u
+          const updatedUsers = users.map((u) =>
+            u.email === formData.email
+              ? { ...u, lastLogin: new Date().toISOString() }
+              : u
           );
           localStorage.setItem("usersData", JSON.stringify(updatedUsers));
-          
+
           // Remember user if checkbox is checked
           if (formData.rememberMe) {
-            localStorage.setItem("rememberedUser", JSON.stringify({
-              email: user.email,
-              name: user.name
-            }));
+            localStorage.setItem(
+              "rememberedUser",
+              JSON.stringify({
+                email: userData.email,
+                name: userData.name,
+              })
+            );
           } else {
             localStorage.removeItem("rememberedUser");
           }
-          
-          // Set current user
-          localStorage.setItem("currentUser", JSON.stringify(user));
-          setCurrentUser(user);
-          setIsLoggedIn(true);
         } else {
           // Register logic
-          const newUser = {
+          userData = {
             email: formData.email,
             password: formData.password,
             name: formData.name,
             registrationDate: new Date().toISOString(),
-            lastLogin: new Date().toISOString()
+            lastLogin: new Date().toISOString(),
           };
-          
+
           // Add new user
-          users.push(newUser);
+          users.push(userData);
           localStorage.setItem("usersData", JSON.stringify(users));
-          
-          // Set current user
-          localStorage.setItem("currentUser", JSON.stringify(newUser));
-          setCurrentUser(newUser);
-          setIsLoggedIn(true);
         }
+
+        // Use the context's login function
+        login(userData);
 
         setIsSubmitting(false);
         setLoginSuccess(true);
@@ -180,10 +169,8 @@ const Login = () => {
 
   // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    setIsLoggedIn(false);
-    setCurrentUser(null);
-    
+    logout(); // Use the context's logout function
+
     // Clear form if not remembered
     if (!formData.rememberMe) {
       setFormData({
@@ -198,7 +185,7 @@ const Login = () => {
         password: "",
       });
     }
-    
+
     setErrors({});
     setLoginSuccess(false);
   };
@@ -207,7 +194,7 @@ const Login = () => {
   useEffect(() => {
     setErrors({});
     setLoginSuccess(false);
-    
+
     if (isLogin) {
       const rememberedUser = localStorage.getItem("rememberedUser");
       if (rememberedUser) {
@@ -244,15 +231,17 @@ const Login = () => {
           <div className="relative">
             <div className="bg-white p-8 rounded-t-3xl">
               <h2 className="text-2xl font-bold text-center mb-6">
-                {isLoggedIn 
+                {isLoggedIn
                   ? `Welcome, ${currentUser?.name}`
-                  : (isLogin ? "Welcome Back" : "Create Account")}
+                  : isLogin
+                  ? "Welcome Back"
+                  : "Create Account"}
               </h2>
 
               {loginSuccess && (
                 <div className="mb-6 p-3 bg-green-100 text-green-700 rounded-lg text-center">
                   {isLogin
-                    ? `Login successful with ${formData.name}`
+                    ? `Login successful!`
                     : "Account created successfully!"}{" "}
                 </div>
               )}
@@ -262,15 +251,18 @@ const Login = () => {
                   <div className="mb-6 flex items-center justify-center bg-gray-200 rounded-full w-24 h-24">
                     <FaUser size={48} className="text-gray-600" />
                   </div>
-                  
+
                   <div className="mb-4 text-center">
-                    <h3 className="text-xl font-semibold">{currentUser?.name}</h3>
+                    <h3 className="text-xl font-semibold">
+                      {currentUser?.name}
+                    </h3>
                     <p className="text-gray-600">{currentUser?.email}</p>
                     <p className="text-sm text-gray-500 mt-1">
-                      Last login: {new Date(currentUser?.lastLogin).toLocaleString()}
+                      Last login:{" "}
+                      {new Date(currentUser?.lastLogin).toLocaleString()}
                     </p>
                   </div>
-                  
+
                   <button
                     onClick={handleLogout}
                     className="flex items-center justify-center w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-medium transition duration-300 mt-4"
@@ -352,7 +344,9 @@ const Login = () => {
                     </div>
 
                     <div className="mb-6">
-                      <label className="block text-gray-700 mb-2">Password</label>
+                      <label className="block text-gray-700 mb-2">
+                        Password
+                      </label>
                       <div className="relative">
                         <input
                           type="password"
@@ -360,7 +354,9 @@ const Login = () => {
                           value={formData.password}
                           onChange={handleChange}
                           className={`w-full pl-10 pr-4 py-3 border ${
-                            errors.password ? "border-red-500" : "border-gray-300"
+                            errors.password
+                              ? "border-red-500"
+                              : "border-gray-300"
                           } rounded-lg focus:outline-none focus:border-primary`}
                           placeholder="••••••••"
                         />

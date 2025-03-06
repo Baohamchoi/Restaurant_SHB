@@ -41,7 +41,7 @@ const DishGrid = ({ dishes }) => {
       </div>
 
       <div
-        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 transition-opacity duration-300 ${
+        className={`grid sm:grid-cols-2 md:grid-cols-3 gap-6  duration-300 ${
           isTransitioning ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -49,10 +49,6 @@ const DishGrid = ({ dishes }) => {
           <div
             key={dish.id}
             className="dish-card transition-all duration-300 ease-in-out transform"
-            style={{
-              opacity: isTransitioning ? 0 : 1,
-              transform: isTransitioning ? "scale(0.95)" : "scale(1)",
-            }}
           >
             <DishCard dish={dish} />
           </div>

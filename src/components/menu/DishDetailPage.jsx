@@ -13,17 +13,6 @@ const DishDetailPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!dish) {
-    return (
-      <div className="container py-16 text-center">
-        <h2 className="text-2xl font-bold mb-4">Dish not found</h2>
-        <Link to="/menu" className="btn btn-primary">
-          Back to Menu
-        </Link>
-      </div>
-    );
-  }
-
   const relatedDishes = dishes
     .filter((d) => d.category === dish.category && d.id !== dish.id)
     .slice(0, 3);
@@ -35,31 +24,30 @@ const DishDetailPage = () => {
       }`}
     >
       <div className="container">
-        {/* Dish Details */}
         <div className="flex flex-col md:flex-row gap-8 mb-16">
-          <div className="md:w-1/2">
+          <div>
             <img
               src={dish.image}
               alt={dish.name}
-              className="w-full h-auto rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="w-full h-auto rounded-lg"
             />
           </div>
 
-          <div className="md:w-1/2">
+          <div>
             <h1 className="text-3xl font-bold mb-2 text-gray-800">{dish.name}</h1>
-            <p className="text-2xl text-amber-600 font-semibold mb-4 transition-colors duration-300">
-              ${dish.price.toFixed(2)}
+            <p className="text-2xl text-amber-600 font-semibold mb-4">
+              ${dish.price}
             </p>
 
             <div className="mb-6">
               <div className="flex gap-2 mb-4 flex-wrap">
-                <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 hover:bg-amber-200">
+                <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">
                   Category: {dish.category}
                 </span>
                 {dish.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 hover:bg-amber-200"
+                    className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium"
                   >
                     {tag}
                   </span>
@@ -72,7 +60,7 @@ const DishDetailPage = () => {
                 <h3 className="text-lg font-semibold mb-2 text-gray-800">Ingredients:</h3>
                 <ul className="list-disc pl-5 text-gray-700">
                   {dish.ingredients.map((ingredient, index) => (
-                    <li key={index} className="transition-all duration-300 hover:text-amber-600">
+                    <li key={index}>
                       {ingredient}
                     </li>
                   ))}
@@ -97,7 +85,6 @@ const DishDetailPage = () => {
           </div>
         </div>
 
-        {/* Description Section */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Description</h2>
           <p className="text-gray-700 mb-4">
@@ -113,13 +100,12 @@ const DishDetailPage = () => {
           </p>
         </div>
 
-        {/* Related Dishes */}
         <div>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Related Dishes</h2>
             <Link
               to="/menu"
-              className="text-amber-600 transition-all duration-300 hover:text-amber-500 hover:underline"
+              className="text-amber-600 hover:underline"
             >
               View All
             </Link>

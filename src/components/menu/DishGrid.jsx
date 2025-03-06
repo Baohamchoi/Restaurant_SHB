@@ -1,26 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DishCard from "./DishCard";
 import { categories } from "../../data/dishes";
 
 const DishGrid = ({ dishes }) => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [filteredDishes, setFilteredDishes] = useState(dishes);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Xử lý thay đổi danh sách món ăn với hiệu ứng
-  useEffect(() => {
-    setIsTransitioning(true); // Kích hoạt trạng thái chuyển đổi
-    const timeout = setTimeout(() => {
-      const newFilteredDishes =
-        activeCategory === "All"
-          ? dishes
-          : dishes.filter((dish) => dish.category === activeCategory);
-      setFilteredDishes(newFilteredDishes);
-      setIsTransitioning(false); // Kết thúc chuyển đổi
-    }, 300); // Thời gian khớp với CSS transition
-
-    return () => clearTimeout(timeout); // Cleanup
-  }, [activeCategory, dishes]);
+  // Lọc món ăn theo danh mục
+  const filteredDishes =
+    activeCategory === "All"
+      ? dishes
+      : dishes.filter((dish) => dish.category === activeCategory);
 
   return (
     <div>
@@ -40,16 +29,9 @@ const DishGrid = ({ dishes }) => {
         ))}
       </div>
 
-      <div
-        className={`grid sm:grid-cols-2 md:grid-cols-3 gap-6  duration-300 ${
-          isTransitioning ? "opacity-0" : "opacity-100"
-        }`}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredDishes.map((dish) => (
-          <div
-            key={dish.id}
-            className="dish-card transition-all duration-300 ease-in-out transform"
-          >
+          <div key={dish.id} className="dish-card">
             <DishCard dish={dish} />
           </div>
         ))}

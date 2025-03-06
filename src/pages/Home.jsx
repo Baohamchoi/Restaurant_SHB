@@ -22,6 +22,9 @@ const Home = () => {
   }, [location]);
   return (
     <div>
+      <div id="home">
+        <Hero />
+      </div>
       <Hero />
       <Features />
       <PopularDishes />

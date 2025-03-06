@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-lg shadow-amber-500/10">
       {/* Logo Section */}
       <div className="flex items-center gap-3 group">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/#home" className="flex items-center gap-2">
           <div className="text-amber-500 relative">
             <ChefHat
               size={40}

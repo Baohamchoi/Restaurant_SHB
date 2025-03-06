@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { ChefHat, ShoppingCart, User, LogOut } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../components/menu/Context"; // Import the auth context hook
 
 const Navbar = () => {
-  // Giả lập trạng thái đăng nhập
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, currentUser, logout } = useAuth(); // Use the auth context
+  const navigate = useNavigate();
 
-  // Hàm xử lý đăng nhập/đăng xuất tạm thời (có thể thay bằng logic thật)
-  const handleLoginToggle = () => {
-    setIsLoggedIn(!isLoggedIn);
+  // Handle logout with navigation
+  const handleLogout = () => {
+    logout(); // Call the context's logout function
+    navigate("/"); // Redirect to home page
   };
 
   return (
@@ -79,14 +81,20 @@ const Navbar = () => {
         </button>
 
         {/* Login/Logout Section */}
-        {isLoggedIn ? (
+        {isLoggedIn && currentUser ? (
           <div className="flex items-center gap-3">
             <Link
-              to="/profile"
-              className="p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
-            ></Link>
+              to="/login"
+              className="p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group flex items-center justify-center"
+              title={currentUser.name}
+            >
+              <User
+                size={22}
+                className="text-amber-400 group-hover:scale-110 transition-transform duration-200"
+              />
+            </Link>
             <button
-              onClick={handleLoginToggle}
+              onClick={handleLogout}
               className="flex items-center gap-2 text-gray-300 hover:text-amber-400 transition-colors duration-300"
             >
               <LogOut size={20} />
@@ -97,7 +105,6 @@ const Navbar = () => {
           <Link
             to="/login"
             className="relative bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-2 px-6 rounded-full overflow-hidden group transition-all duration-300 hover:from-amber-400 hover:to-amber-500 hover:scale-105 active:scale-95 shadow-md hover:shadow-amber-500/30"
-            onClick={handleLoginToggle} // Giả lập đăng nhập
           >
             <span className="relative z-10">LOGIN</span>
             <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>

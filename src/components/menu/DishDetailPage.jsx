@@ -9,7 +9,6 @@ const DishDetailPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Giả lập hiệu ứng tải trang
     const timer = setTimeout(() => setIsLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
@@ -73,10 +72,7 @@ const DishDetailPage = () => {
                 <h3 className="text-lg font-semibold mb-2 text-gray-800">Ingredients:</h3>
                 <ul className="list-disc pl-5 text-gray-700">
                   {dish.ingredients.map((ingredient, index) => (
-                    <li
-                      key={index}
-                      className="transition-all duration-300 hover:text-amber-600"
-                    >
+                    <li key={index} className="transition-all duration-300 hover:text-amber-600">
                       {ingredient}
                     </li>
                   ))}
@@ -102,7 +98,7 @@ const DishDetailPage = () => {
         </div>
 
         {/* Description Section */}
-        <div className="mb-16 transition-all duration-300 ease-in-out">
+        <div className="mb-16">
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Description</h2>
           <p className="text-gray-700 mb-4">
             {dish.description} Our chefs prepare each {dish.name.toLowerCase()}{" "}
@@ -118,7 +114,7 @@ const DishDetailPage = () => {
         </div>
 
         {/* Related Dishes */}
-        <div className="transition-all duration-300 ease-in-out">
+        <div>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Related Dishes</h2>
             <Link

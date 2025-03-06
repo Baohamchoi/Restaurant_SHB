@@ -100,7 +100,7 @@ const Contact = () => {
             <ContactInfo 
               icon={<FaClock size={20} />}
               title="Opening Hours"
-              details={"Mon - Fri: 7:00am - 10:00pm\nSat: 7:00am - 6:00pm\nSun: 8:00am - 6:00pm"}
+              details="Mon - Fri: 7:00am - 10:00pm\nSat: 7:00am - 6:00pm\nSun: 8:00am - 6:00pm"
             />
             
             {/* Map */}
@@ -130,4 +130,4 @@ const Contact = () => {
   );
 };
 
-export default Contact
+export default Contact;

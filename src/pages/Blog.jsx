@@ -1,19 +1,19 @@
 import React from 'react';
 
-import blog1 from '../images/Blog/blog1.jpg'; 
-import blog2 from '../images/Blog/blog2.jpg'; 
-import blog3 from '../images/Blog/blog3.jpg'; 
+// Import images directly
+import blog1 from '../images/Blog/blog1.jpg';
+import blog2 from '../images/Blog/blog2.jpg';
+import blog3 from '../images/Blog/blog3.jpg';
 
 const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {/* Image Placeholder with lazy loading */}
+      {/* Image Placeholder */}
       <div className="h-48 bg-gray-300 flex items-center justify-center">
         <img 
           src={imagePlaceholder} 
           alt="Blog Image" 
-          className="w-full h-full object-fit-cover"
-          loading="lazy"
+          className="w-full h-full object-cover"
         />
       </div>
       <div className="p-4">

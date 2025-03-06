@@ -13,7 +13,7 @@ const Login = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [loginSuccess, setLoginSuccess] = useState(false)
-  
+
   const navigate = useNavigate()
 
   // Load saved data when component mounts
@@ -48,7 +48,7 @@ const Login = () => {
   // Form validation with localStorage check
   const validateForm = () => {
     const newErrors = {}
-    
+
     if (!isLogin && !formData.name.trim()) {
       newErrors.name = 'Name is required'
     }
@@ -70,7 +70,6 @@ const Login = () => {
       const savedData = localStorage.getItem('userAuthData')
       if (savedData) {
         const parsedData = JSON.parse(savedData)
-        // If there's saved data, email and password must match
         if (parsedData.email && parsedData.password) {
           if (parsedData.email !== formData.email) {
             newErrors.email = 'Email does not match registered account'
@@ -85,7 +84,7 @@ const Login = () => {
         newErrors.email = 'No registered account found'
       }
     }
-    
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -101,24 +100,14 @@ const Login = () => {
         console.log('Form submitted:', formData)
         
         // Handle localStorage
-        if (!isLogin || (isLogin && formData.rememberMe)) {
-          const dataToSave = {
-            email: formData.email,
-            password: formData.password, // Save password during registration or login with rememberMe
-            name: formData.name || '',
-            rememberMe: isLogin ? formData.rememberMe : false,
-            lastLogin: new Date().toISOString()
-          }
-          localStorage.setItem('userAuthData', JSON.stringify(dataToSave))
-        } else if (isLogin && !formData.rememberMe) {
-          // Keep existing data but update lastLogin
-          const savedData = JSON.parse(localStorage.getItem('userAuthData'))
-          if (savedData) {
-            savedData.lastLogin = new Date().toISOString()
-            savedData.rememberMe = false
-            localStorage.setItem('userAuthData', JSON.stringify(savedData))
-          }
+        const dataToSave = {
+          email: formData.email,
+          password: formData.password, 
+          name: formData.name || '',
+          rememberMe: isLogin ? formData.rememberMe : false,
+          lastLogin: new Date().toISOString()
         }
+        localStorage.setItem('userAuthData', JSON.stringify(dataToSave))
 
         setIsSubmitting(false)
         setLoginSuccess(true)
@@ -134,7 +123,7 @@ const Login = () => {
   useEffect(() => {
     const savedData = localStorage.getItem('userAuthData')
     const parsedData = savedData ? JSON.parse(savedData) : {}
-    
+
     setFormData({
       name: '',
       email: isLogin && parsedData.email ? parsedData.email : '',
@@ -144,6 +133,7 @@ const Login = () => {
     setErrors({})
     setLoginSuccess(false)
   }, [isLogin])
+
   return (
     <div className="min-h-screen bg-gray-100 py-16">
       <div className="container mx-auto px-4">
@@ -188,9 +178,6 @@ const Login = () => {
                         className={`w-full pl-10 pr-4 py-3 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:border-primary`}
                         placeholder="John Doe"
                       />
-                      <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <FaUser size={16} />
-                      </div>
                       {errors.name && (
                         <div className="flex items-center text-red-500 mt-1 text-sm">
                           <FaExclamationCircle className="mr-1" />
@@ -212,9 +199,6 @@ const Login = () => {
                       className={`w-full pl-10 pr-4 py-3 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:border-primary`}
                       placeholder="your@email.com"
                     />
-                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                      <FaEnvelope size={16} />
-                    </div>
                     {errors.email && (
                       <div className="flex items-center text-red-500 mt-1 text-sm">
                         <FaExclamationCircle className="mr-1" />
@@ -235,9 +219,6 @@ const Login = () => {
                       className={`w-full pl-10 pr-4 py-3 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:outline-none focus:border-primary`}
                       placeholder="••••••••"
                     />
-                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                      <FaLock size={16} />
-                    </div>
                     {errors.password && (
                       <div className="flex items-center text-red-500 mt-1 text-sm">
                         <FaExclamationCircle className="mr-1" />
@@ -275,24 +256,6 @@ const Login = () => {
                   {isLogin ? 'Login' : 'Create Account'}
                 </button>
               </form>
-              
-              <div className="mt-8">
-                <div className="relative flex items-center justify-center mb-6">
-                  <div className="border-t border-gray-300 w-full"></div>
-                  <div className="bg-white px-4 text-sm text-gray-500 absolute">or continue with</div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <button className="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-300">
-                    <FaGoogle className="mr-2 text-red-500" />
-                    <span>Google</span>
-                  </button>
-                  <button className="flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-300">
-                    <FaFacebookF className="mr-2 text-blue-600" />
-                    <span>Facebook</span>
-                  </button>
-                </div>
-              </div>
               
               <div className="mt-8 text-center text-gray-600">
                 {isLogin ? (

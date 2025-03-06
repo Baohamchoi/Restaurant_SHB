@@ -3,10 +3,10 @@ import React from "react";
 const Reservation = () => {
   return (
     <div className="relative py-16 bg-gray-900">
-      <div className="absolute inset-0 bg-gray-900 opacity-80 transition-opacity duration-500"></div>
+      <div className="absolute bg-gray-900"></div>
       <div className="relative container mx-auto px-4">
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl animate-in fade-in slide-in-from-bottom-10 duration-500">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 transition-colors duration-300 hover:text-amber-600">
+        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg">
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
             Make a Reservation
           </h2>
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -21,14 +21,14 @@ const Reservation = () => {
                 <label className="block text-gray-700 mb-2">{field.label}</label>
                 <input
                   type={field.type}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500 transition-all duration-300 hover:bg-gray-50"
+                  className="w-full px-4 py-2 border border-gray-300 rounded"
                   placeholder={field.placeholder}
                 />
               </div>
             ))}
             <div>
               <label className="block text-gray-700 mb-2">Number of Guests</label>
-              <select className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500 transition-all duration-300 hover:bg-gray-50">
+              <select className="w-full px-4 py-2 border border-gray-300 rounded">
                 <option>1 Person</option>
                 <option>2 People</option>
                 <option>3 People</option>
@@ -39,7 +39,7 @@ const Reservation = () => {
             <div className="md:col-span-2">
               <label className="block text-gray-700 mb-2">Special Request</label>
               <textarea
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-amber-500 transition-all duration-300 hover:bg-gray-50 h-32"
+                className="w-full px-4 py-2 border border-gray-300 rounded h-32"
                 placeholder="Your Message"
               ></textarea>
             </div>

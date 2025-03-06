@@ -15,13 +15,11 @@ function Hero() {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden">
-      {/* Main container */}
-      <div className="flex flex-col lg:flex-row w-full h-full">
-        {/* Left Content */}
-        <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-20 bg-gradient-to-r from-black via-black/95 to-transparent">
-          <div className="max-w-xl">
-            <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+    <div>
+      <div>
+        <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-20 bg-gradient-to-r from-black via-black/95 ">
+          <div>
+            <h1 className="text-5xl lg:text-6xl font-extrabold text-white mb-6">
               Experience
               <span className="block mt-2 text-7xl lg:text-8xl bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
                 Culinary
@@ -34,16 +32,14 @@ function Hero() {
             Discover a world of flavors with our carefully crafted dishes, made
             from the freshest ingredients to elevate your dining experience.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <div className="mt-10 flex flex-row gap-4">
               <button className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-full hover:bg-amber-600 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 Reserve Table
               </button>
-              <button className="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transform transition-all duration-300">
+              <button className="px-8 py-4 border-2  text-white font-semibold rounded-full hover:bg-white/10 transform transition-all duration-300">
                 View Menu
               </button>
             </div>
-            
-            {/* Navigation Dots */}
             <div className="mt-16 flex space-x-4">
               {images.map((_, index) => (
                 <button
@@ -59,7 +55,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* Right Image Section */}
+        {/* Image Section */}
         <div className="w-full">
           {images.map((image, index) => (
             <div

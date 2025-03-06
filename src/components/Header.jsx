@@ -84,7 +84,7 @@ const Navbar = () => {
         {isLoggedIn && currentUser ? (
           <div className="flex items-center gap-3">
             <Link
-              to="/profile"
+              to="/Login"
               className="p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group flex items-center justify-center"
               title={currentUser.name}
             >

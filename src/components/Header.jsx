@@ -17,9 +17,9 @@ const Navbar = () => {
       <div className="flex items-center gap-3 group">
         <Link to="/" className="flex items-center gap-2">
           <div className="text-amber-500 relative">
-            <ChefHat 
-              size={40} 
-              strokeWidth={1.5} 
+            <ChefHat
+              size={40}
+              strokeWidth={1.5}
               className="group-hover:rotate-12 transition-transform duration-300 transform-gpu"
             />
             <div className="absolute -inset-2 bg-amber-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -40,8 +40,8 @@ const Navbar = () => {
             to={path}
             className={({ isActive }) =>
               `relative font-medium text-sm uppercase tracking-wider transition-all duration-300 ease-in-out group ${
-                isActive 
-                  ? "text-amber-400" 
+                isActive
+                  ? "text-amber-400"
                   : "text-gray-300 hover:text-amber-400"
               }`
             }
@@ -49,7 +49,7 @@ const Navbar = () => {
             {({ isActive }) => (
               <>
                 {["Home", "Menu", "About", "Blog", "Contact"][index]}
-                <span 
+                <span
                   className={`absolute -bottom-1 left-0 h-[2px] bg-amber-400 transition-all duration-300 ${
                     isActive ? "w-full" : "w-0 group-hover:w-full"
                   }`}
@@ -68,9 +68,9 @@ const Navbar = () => {
           to="/cart"
           className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
         >
-          <ShoppingCart 
-            size={24} 
-            className="text-amber-400 group-hover:scale-110 transition-transform duration-200" 
+          <ShoppingCart
+            size={24}
+            className="text-amber-400 group-hover:scale-110 transition-transform duration-200"
           />
           {/* Badge hiển thị số lượng (giả lập) */}
           <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
@@ -84,8 +84,7 @@ const Navbar = () => {
             <Link
               to="/profile"
               className="p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
-            >
-            </Link>
+            ></Link>
             <button
               onClick={handleLoginToggle}
               className="flex items-center gap-2 text-gray-300 hover:text-amber-400 transition-colors duration-300"

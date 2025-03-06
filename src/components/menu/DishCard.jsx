@@ -20,7 +20,7 @@ const DishCard = ({ dish }) => {
           to={`/menu/${dish.id}`}
           className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold py-2 px-4 rounded-full transition-all  hover:from-amber-400 hover:to-amber-500 shadow-md"
         >
-          Order Now
+          Dish Details
         </Link>
       </div>
     </div>

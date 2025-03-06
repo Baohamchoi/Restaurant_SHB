@@ -64,19 +64,19 @@ const Navbar = () => {
       {/* Right Section: Cart + Login/Logout */}
       <div className="flex items-center gap-4">
         {/* Shopping Cart */}
-        <Link
-          to="/cart"
+        <button
           className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
         >
           <ShoppingCart
             size={24}
             className="text-amber-400 group-hover:scale-110 transition-transform duration-200"
           />
-          {/* Badge hiển thị số lượng (giả lập) */}
-          <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-            0
-          </span>
-        </Link>
+          {(
+            <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform scale-100 transition-transform duration-200">
+              0
+            </span>
+          )}
+        </button>
 
         {/* Login/Logout Section */}
         {isLoggedIn ? (

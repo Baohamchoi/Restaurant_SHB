@@ -7,11 +7,20 @@ const DishDetailPage = () => {
   const { id } = useParams();
   const dish = dishes.find((d) => d.id === parseInt(id));
   const [isLoading, setIsLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleQuantityChange = (delta) => { 
+    if (typeof delta !== "number") {
+      console.error("Delta must be a number");
+      return; 
+    }
+    setQuantity((prev) => Math.max(0, prev + delta));  // Đảm bảo quantity >= 1
+  };
 
   const relatedDishes = dishes
     .filter((d) => d.category === dish.category && d.id !== dish.id)
@@ -69,11 +78,11 @@ const DishDetailPage = () => {
 
               <div className="flex items-center gap-4">
                 <div className="flex border rounded-md bg-gray-100">
-                  <button className="px-4 py-2 border-r hover:bg-amber-200 transition-colors duration-200">
+                  <button className="px-4 py-2 border-r hover:bg-amber-200 transition-colors duration-200" onClick={() => handleQuantityChange(-1)}>
                     -
                   </button>
-                  <span className="px-4 py-2 font-medium">1</span>
-                  <button className="px-4 py-2 border-l hover:bg-amber-200 transition-colors duration-200">
+                  <span className="px-4 py-2 font-medium">{quantity}</span>
+                  <button className="px-4 py-2 border-l hover:bg-amber-200 transition-colors duration-200" onClick={() => handleQuantityChange(1)}>
                     +
                   </button>
                 </div>

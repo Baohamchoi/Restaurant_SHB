@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 function App() {
   return (
     <Router>
-      <div className="font-poppins">
+        <div className="font-poppins">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

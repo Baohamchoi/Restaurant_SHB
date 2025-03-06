@@ -5,25 +5,25 @@ import image2 from "../../images/home/blog2.png";
 
 const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group">
-      <div className="overflow-hidden">
+    <div className="bg-white rounded-lg shadow-md duration-300 hover:-translate-y-2 hover:shadow-xl group">
+      <div>
         <img
           src={imagePlaceholder}
           alt={title}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-48 object-cover"
         />
       </div>
       <div className="p-4">
-        <span className="text-sm text-gray-500 transition-colors duration-300 group-hover:text-amber-600">
+        <span className="text-sm text-gray-500">
           {date}
         </span>
-        <h3 className="text-xl font-semibold my-2 text-gray-800 transition-colors duration-300 group-hover:text-amber-600">
+        <h3 className="text-xl font-semibold my-2 text-gray-800">
           {title}
         </h3>
         <p className="text-gray-600 mb-4 leading-relaxed">{excerpt}</p>
         <Link
           to="/blog"
-          className="inline-block text-amber-600 font-medium transition-all duration-300 hover:text-amber-500 hover:underline"
+          className="duration-300 hover:text-amber-500 hover:underline"
         >
           Read More
         </Link>
@@ -34,12 +34,12 @@ const BlogCard = ({ imagePlaceholder, date, title, excerpt }) => {
 
 const BlogSection = () => {
   return (
-    <div className="py-16 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 transition-colors duration-300 hover:text-amber-600">
+    <div className="py-16">
+      <div className="container">
+        <h2 className="text-3xl font-bold mb-8 text-center">
           Get The Latest News
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in slide-in-from-bottom-10 duration-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <BlogCard
             imagePlaceholder={image1}
             date="June 15, 2023"

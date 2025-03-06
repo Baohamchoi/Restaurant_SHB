@@ -1,23 +1,38 @@
-import React from "react";
-import { ChefHat, ShoppingCart, User, LogOut } from "lucide-react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../components/menu/Context"; // Import the auth context hook
+import React, { useState, useEffect } from "react";
+import { ChefHat, ShoppingCart, LogOut } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const { isLoggedIn, currentUser, logout } = useAuth(); // Use the auth context
-  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Handle logout with navigation
+  const checkLoginStatus = () => {
+    const userAuthData = localStorage.getItem("userAuthData");
+    if (userAuthData) {
+      const parsedData = JSON.parse(userAuthData);
+      setIsLoggedIn(!!parsedData.email && !!parsedData.password);
+    } else {
+      setIsLoggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+    window.addEventListener("storage", checkLoginStatus);
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+    };
+  }, []);
+
   const handleLogout = () => {
-    logout(); // Call the context's logout function
-    navigate("/"); // Redirect to home page
+    localStorage.removeItem("userAuthData");
+    setIsLoggedIn(false);
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
     <nav className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-lg shadow-amber-500/10">
-      {/* Logo Section */}
       <div className="flex items-center gap-3 group">
-        <Link to="/#home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <div className="text-amber-500 relative">
             <ChefHat
               size={40}
@@ -34,7 +49,6 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Navigation Links */}
       <div className="hidden md:flex space-x-8">
         {["/", "/menu", "/about", "/blog", "/contact"].map((path, index) => (
           <NavLink
@@ -63,9 +77,7 @@ const Navbar = () => {
         ))}
       </div>
 
-      {/* Right Section: Cart + Login/Logout */}
       <div className="flex items-center gap-4">
-        {/* Shopping Cart */}
         <Link
           to="/cart"
           className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
@@ -74,12 +86,12 @@ const Navbar = () => {
             size={24}
             className="text-amber-400 group-hover:scale-110 transition-transform duration-200"
           />
-          {/* Badge hiển thị số lượng (giả lập) */}
           <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
             0
           </span>
         </Link>
 
+<<<<<<< HEAD
         {/* Login/Logout Section */}
         {isLoggedIn && currentUser ? (
           <div className="flex items-center gap-3">
@@ -101,6 +113,16 @@ const Navbar = () => {
               <span className="text-sm font-medium uppercase">Logout</span>
             </button>
           </div>
+=======
+        {isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-gray-300 hover:text-amber-400 transition-colors duration-300"
+          >
+            <LogOut size={20} />
+            <span className="text-sm font-medium uppercase">Logout</span>
+          </button>
+>>>>>>> 14efba20273cb5bbbbdef2688afb9a44f8b47456
         ) : (
           <Link
             to="/login"

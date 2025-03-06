@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  FaEnvelope,
-  FaLock,
-  FaGoogle,
-  FaFacebookF,
-  FaUser,
-  FaExclamationCircle,
-} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaExclamationCircle } from "react-icons/fa";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import home1 from '../../images/home/home1.png';
-import home2 from '../../images/home/home2.png';
-import home3 from '../../images/home/home3.png';
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import home1 from "../../images/home/home1.png";
+import home2 from "../../images/home/home2.png";
+import home3 from "../../images/home/home3.png";
 
 function Hero() {
   const images = [home1, home2, home3];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -13,6 +15,10 @@ function Hero() {
     }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  const toMenu = () => {
+    navigate("/menu");
+  };
 
   return (
     <div>
@@ -29,14 +35,22 @@ function Hero() {
               </span>
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed max-w-md font-medium">
-            Discover a world of flavors with our carefully crafted dishes, made
-            from the freshest ingredients to elevate your dining experience.
+              Discover a world of flavors with our carefully crafted dishes,
+              made from the freshest ingredients to elevate your dining
+              experience.
             </p>
             <div className="mt-10 flex flex-row gap-4">
-              <button className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-full hover:bg-amber-600 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <Link
+                className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-full hover:bg-amber-600 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                to="/#reservation"
+              >
                 Reserve Table
-              </button>
-              <button className="px-8 py-4 border-2  text-white font-semibold rounded-full hover:bg-white/10 transform transition-all duration-300">
+              </Link>
+
+              <button
+                className="px-8 py-4 border-2  text-white font-semibold rounded-full hover:bg-white/10 transform transition-all duration-300"
+                onClick={() => toMenu()}
+              >
                 View Menu
               </button>
             </div>
@@ -46,7 +60,9 @@ function Hero() {
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentIndex === index ? "bg-amber-500 scale-125" : "bg-white/50 hover:bg-white/75"
+                    currentIndex === index
+                      ? "bg-amber-500 scale-125"
+                      : "bg-white/50 hover:bg-white/75"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -65,7 +81,11 @@ function Hero() {
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-black/40 lg:from-transparent lg:via-black/20 lg:to-black/40" />
-              <img src={image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
             </div>
           ))}
         </div>

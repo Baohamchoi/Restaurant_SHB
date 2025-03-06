@@ -6,8 +6,20 @@ import AboutSection from "../components/home/AboutSection";
 import BlogSection from "../components/home/BlogSection";
 import Reservation from "../components/home/Reservation";
 import Features from "../components/home/Features";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   return (
     <div>
       <Hero />
@@ -16,7 +28,9 @@ const Home = () => {
       <Services />
       <AboutSection />
       <BlogSection />
-      <Reservation />
+      <div id="reservation">
+        <Reservation />
+      </div>
     </div>
   );
 };

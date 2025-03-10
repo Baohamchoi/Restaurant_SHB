@@ -9,27 +9,30 @@ import Footer from "./components/Footer";
 import DishDetailPage from "./components/menu/DishDetailPage";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import { AuthProvider } from "./components/menu/Context"; 
+import { AuthProvider } from "./components/menu/Context";
+import { FoodProvider } from "./components/FoodContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="font-poppins">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/menu/:id" element={<DishDetailPage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
+    <FoodProvider>
+      <AuthProvider>
+        <Router>
+          <div className="font-poppins">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/menu/:id" element={<DishDetailPage />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </AuthProvider>
+    </FoodProvider>
   );
 }
 

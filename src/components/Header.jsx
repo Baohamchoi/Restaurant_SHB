@@ -2,10 +2,12 @@ import React from "react";
 import { ChefHat, ShoppingCart, User, LogOut } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../components/menu/Context"; // Import the auth context hook
+import { useFood } from "./FoodContext";
 
 const Navbar = () => {
   const { isLoggedIn, currentUser, logout } = useAuth(); // Use the auth context
   const navigate = useNavigate();
+  const { food, totalItems } = useFood();
 
   // Handle logout with navigation
   const handleLogout = () => {
@@ -73,7 +75,7 @@ const Navbar = () => {
           />
           {
             <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform scale-100 transition-transform duration-200">
-              0
+              {totalItems}
             </span>
           }
         </button>

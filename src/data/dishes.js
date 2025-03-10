@@ -17,6 +17,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Bestseller", "Classic"],
+    quantity: 0,
   },
   {
     id: 2,
@@ -37,6 +38,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Cheesy", "Classic"],
+    quantity: 0,
   },
   {
     id: 3,
@@ -58,6 +60,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Popular", "Savory"],
+    quantity: 0,
   },
   {
     id: 4,
@@ -75,6 +78,7 @@ export const dishes = [
       "Soft bun",
     ],
     tags: ["Healthy", "Grilled"],
+    quantity: 0,
   },
   {
     id: 5,
@@ -93,6 +97,7 @@ export const dishes = [
       "Whole grain bun",
     ],
     tags: ["Vegetarian", "Healthy"],
+    quantity: 0,
   },
   {
     id: 6,
@@ -113,6 +118,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Filling", "Double"],
+    quantity: 0,
   },
   {
     id: 7,
@@ -131,6 +137,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Spicy", "BBQ"],
+    quantity: 0,
   },
   {
     id: 8,
@@ -150,6 +157,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Savory", "Gourmet"],
+    quantity: 0,
   },
   {
     id: 9,
@@ -169,6 +177,7 @@ export const dishes = [
       "Sesame seed bun",
     ],
     tags: ["Spicy", "Hot"],
+    quantity: 0,
   },
   {
     id: 10,
@@ -179,6 +188,7 @@ export const dishes = [
     description: "Crispy golden fries, perfectly salted and served hot.",
     ingredients: ["Potatoes", "Salt", "Vegetable oil"],
     tags: ["Side", "Classic"],
+    quantity: 0,
   },
   {
     id: 11,
@@ -190,6 +200,7 @@ export const dishes = [
       "Thick-cut onion rings in a crispy batter, served with dipping sauce.",
     ingredients: ["Onions", "Batter", "Vegetable oil", "Dipping sauce"],
     tags: ["Side", "Crispy"],
+    quantity: 0,
   },
   {
     id: 12,
@@ -201,6 +212,7 @@ export const dishes = [
       "Creamy milkshake available in vanilla, chocolate, or strawberry flavors.",
     ingredients: ["Ice cream", "Milk", "Whipped cream", "Cherry"],
     tags: ["Sweet", "Cold"],
+    quantity: 0,
   },
   {
     id: 13,
@@ -211,6 +223,7 @@ export const dishes = [
     description: "Refreshing soft drinks with free refills.",
     ingredients: ["Carbonated water", "Syrup", "Ice"],
     tags: ["Cold", "Refreshing"],
+    quantity: 0,
   },
   {
     id: 14,
@@ -227,6 +240,7 @@ export const dishes = [
       "Dipping sauce",
     ],
     tags: ["Crispy", "Protein"],
+    quantity: 0,
   },
   {
     id: 15,
@@ -243,6 +257,7 @@ export const dishes = [
       "Parmesan cheese",
     ],
     tags: ["Healthy", "Fresh"],
+    quantity: 0,
   },
 ];
 

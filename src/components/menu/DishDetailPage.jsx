@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { dishes } from "../../data/dishes";
 import DishCard from "./DishCard";
+import { useFood } from "../FoodContext";
 
 const DishDetailPage = () => {
+  const { addToFood } = useFood();
   const { id } = useParams();
   const dish = dishes.find((d) => d.id === parseInt(id));
   const [isLoading, setIsLoading] = useState(true);
@@ -14,12 +16,12 @@ const DishDetailPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleQuantityChange = (delta) => { 
+  const handleQuantityChange = (delta) => {
     if (typeof delta !== "number") {
       console.error("Delta must be a number");
-      return; 
+      return;
     }
-    setQuantity((prev) => Math.max(0, prev + delta));  // Đảm bảo quantity >= 1
+    setQuantity((prev) => Math.max(1, prev + delta)); // Đảm bảo quantity >= 1
   };
 
   const relatedDishes = dishes
@@ -43,7 +45,9 @@ const DishDetailPage = () => {
           </div>
 
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-gray-800">{dish.name}</h1>
+            <h1 className="text-3xl font-bold mb-2 text-gray-800">
+              {dish.name}
+            </h1>
             <p className="text-2xl text-amber-600 font-semibold mb-4">
               ${dish.price}
             </p>
@@ -66,27 +70,37 @@ const DishDetailPage = () => {
               <p className="text-gray-700 mb-6">{dish.description}</p>
 
               <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2 text-gray-800">Ingredients:</h3>
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                  Ingredients:
+                </h3>
                 <ul className="list-disc pl-5 text-gray-700">
                   {dish.ingredients.map((ingredient, index) => (
-                    <li key={index}>
-                      {ingredient}
-                    </li>
+                    <li key={index}>{ingredient}</li>
                   ))}
                 </ul>
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="flex border rounded-md bg-gray-100">
-                  <button className="px-4 py-2 border-r hover:bg-amber-200 transition-colors duration-200" onClick={() => handleQuantityChange(-1)}>
+                  <button
+                    className="px-4 py-2 border-r hover:bg-amber-200 transition-colors duration-200"
+                    onClick={() => handleQuantityChange(-1)}
+                  >
                     -
                   </button>
                   <span className="px-4 py-2 font-medium">{quantity}</span>
-                  <button className="px-4 py-2 border-l hover:bg-amber-200 transition-colors duration-200" onClick={() => handleQuantityChange(1)}>
+                  <button
+                    className="px-4 py-2 border-l hover:bg-amber-200 transition-colors duration-200"
+                    onClick={() => handleQuantityChange(1)}
+                  >
                     +
                   </button>
                 </div>
-                <button className="bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:from-amber-400 hover:to-amber-500 shadow-md">
+                <button
+                  className="bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 hover:from-amber-400 hover:to-amber-500 shadow-md
+                "
+                  onClick={() => addToFood(dish, quantity)}
+                >
                   Order Now
                 </button>
               </div>
@@ -112,10 +126,7 @@ const DishDetailPage = () => {
         <div>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Related Dishes</h2>
-            <Link
-              to="/menu"
-              className="text-amber-600 hover:underline"
-            >
+            <Link to="/menu" className="text-amber-600 hover:underline">
               View All
             </Link>
           </div>

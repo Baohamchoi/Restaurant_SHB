@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-lg shadow-amber-500/10">
       {/* Logo Section */}
       <div className="flex items-center gap-3 group">
-        <Link to="/#home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <div className="text-amber-500 relative">
             <ChefHat
               size={40}
@@ -66,18 +66,16 @@ const Navbar = () => {
       {/* Right Section: Cart + Login/Logout */}
       <div className="flex items-center gap-4">
         {/* Shopping Cart */}
-        <button
-          className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
-        >
+        <button className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group">
           <ShoppingCart
             size={24}
             className="text-amber-400 group-hover:scale-110 transition-transform duration-200"
           />
-          {(
+          {
             <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform scale-100 transition-transform duration-200">
               0
             </span>
-          )}
+          }
         </button>
 
         {/* Login/Logout Section */}

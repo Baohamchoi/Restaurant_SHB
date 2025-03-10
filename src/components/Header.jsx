@@ -7,7 +7,7 @@ import { useFood } from "./FoodContext";
 const Navbar = () => {
   const { isLoggedIn, currentUser, logout } = useAuth(); // Use the auth context
   const navigate = useNavigate();
-  const { food, totalItems } = useFood();
+  const { totalItems } = useFood();
 
   // Handle logout with navigation
   const handleLogout = () => {
@@ -68,7 +68,10 @@ const Navbar = () => {
       {/* Right Section: Cart + Login/Logout */}
       <div className="flex items-center gap-4">
         {/* Shopping Cart */}
-        <button className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group">
+        <Link
+          className="relative p-2 rounded-full bg-gray-800/50 hover:bg-amber-500/20 transition-all duration-300 group"
+          to="/cart"
+        >
           <ShoppingCart
             size={24}
             className="text-amber-400 group-hover:scale-110 transition-transform duration-200"
@@ -78,7 +81,7 @@ const Navbar = () => {
               {totalItems}
             </span>
           }
-        </button>
+        </Link>
 
         {/* Login/Logout Section */}
         {isLoggedIn && currentUser ? (

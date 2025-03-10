@@ -14,9 +14,9 @@ export const FoodProvider = ({ children }) => {
             ? { ...item, quantity: item.quantity + parseInt(quantity) }
             : item
         );
-        console.log("Updated Food:", updatedFood); 
+        console.log("Updated Food:", updatedFood);
         return updatedFood;
-      }); 
+      });
     } else {
       setFood((prevFood) => {
         const newFood = [
@@ -42,6 +42,8 @@ export const FoodProvider = ({ children }) => {
       )
     );
   };
+
+  const removeFromFoodAll = () => setFood([]);
 
   const totalItems = food.length;
 
@@ -71,6 +73,7 @@ export const FoodProvider = ({ children }) => {
         food,
         addToFood,
         removeFromFood,
+        removeFromFoodAll,
         totalItems,
         sumItems,
         updateQuantity,

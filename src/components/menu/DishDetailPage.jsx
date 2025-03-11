@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { dishes } from "../../data/dishes";
 import DishCard from "./DishCard";
@@ -8,13 +8,7 @@ const DishDetailPage = () => {
   const { addToFood } = useFood();
   const { id } = useParams();
   const dish = dishes.find((d) => d.id === parseInt(id));
-  const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleQuantityChange = (delta) => {
     if (typeof delta !== "number") {
@@ -29,11 +23,7 @@ const DishDetailPage = () => {
     .slice(0, 3);
 
   return (
-    <div
-      className={`py-16 transition-opacity duration-300 ease-in-out ${
-        isLoading ? "opacity-0" : "opacity-100"
-      }`}
-    >
+    <div className="py-16">
       <div className="container">
         <div className="flex flex-col md:flex-row gap-8 mb-16">
           <div>

@@ -42,69 +42,60 @@ export default function FoodCart() {
           </div>
         ) : (
           <div className="space-y-8">
-            {/* Clear Cart Button - Added at the top */}
-            <div className="flex justify-end"></div>
-
             {food.map((item) => (
               <div
                 key={item.id}
                 className="group bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-100 overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:bg-white"
               >
-                <div className="p-6 sm:p-8">
-                  <div className="flex flex-col sm:flex-row gap-8">
-                    <div className="relative">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="relative w-full sm:w-48 h-48 rounded-2xl object-cover transform transition-transform duration-500 "
-                      />
-                    </div>
+                <div className="p-6 sm:p-8 flex gap-8">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full sm:w-48 h-48 rounded-2xl object-cover transform transition-transform duration-500 "
+                  />
 
-                    <div className="flex-grow">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h2 className="text-2xl font-bold text-amber-900 mb-2 group-hover:text-amber-700 transition-colors duration-300">
-                            {item.name}
-                          </h2>
-                        </div>
-                        <div className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </div>
+                  <div className="flex-grow">
+                    <div className="flex justify-between">
+                      <h2 className="text-2xl font-bold text-amber-900 mb-2 group-hover:text-amber-700 transition-colors duration-300">
+                        {item.name}
+                      </h2>
+                      <div className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent">
+                        ${(item.price * item.quantity).toFixed(2)}
                       </div>
-                      <p className="text-amber-700 text-lg mb-6 max-w-xl">
-                        {item.description}
-                      </p>
+                    </div>
+                    <p className="text-amber-700 text-lg mb-6 max-w-xl">
+                      {item.description}
+                    </p>
 
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 bg-amber-50 rounded-2xl p-2 border border-amber-100">
-                          <button
-                            className="p-2 hover:bg-amber-100 rounded-xl transition-colors duration-200"
-                            onClick={() =>
-                              updateQuantity(item.id, item.quantity - 1)
-                            }
-                          >
-                            <Minus className="w-5 h-5 text-amber-700" />
-                          </button>
-                          <span className="w-12 text-center font-bold text-amber-900 text-lg">
-                            {item.quantity}
-                          </span>
-                          <button
-                            className="p-2 hover:bg-amber-100 rounded-xl transition-colors duration-200"
-                            onClick={() =>
-                              updateQuantity(item.id, item.quantity + 1)
-                            }
-                          >
-                            <Plus className="w-5 h-5 text-amber-700" />
-                          </button>
-                        </div>
-
+                    <div className="flex justify-between">
+                      <div className="flex items-center gap-3 bg-amber-50 rounded-2xl p-2 border border-amber-100">
                         <button
-                          className="p-3 text-amber-600 hover:text-red-500 hover:bg-red-50 rounded-2xl transition-all duration-300 hover:scale-110"
-                          onClick={() => removeFromFood(item.id)}
+                          className="p-2 hover:bg-amber-100 rounded-xl transition-colors duration-200"
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                         >
-                          <Trash2 className="w-6 h-6" />
+                          <Minus className="w-5 h-5 text-amber-700" />
+                        </button>
+                        <span className="w-12 text-center font-bold text-amber-900 text-lg">
+                          {item.quantity}
+                        </span>
+                        <button
+                          className="p-2 hover:bg-amber-100 rounded-xl transition-colors duration-200"
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
+                        >
+                          <Plus className="w-5 h-5 text-amber-700" />
                         </button>
                       </div>
+
+                      <button
+                        className="p-3 text-amber-600 hover:text-red-500 hover:bg-red-50 rounded-2xl transition-all duration-300 hover:scale-110"
+                        onClick={() => removeFromFood(item.id)}
+                      >
+                        <Trash2 className="w-6 h-6" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -122,7 +113,6 @@ export default function FoodCart() {
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto ">
-                  {/* Delete All Button - Alternative position */}
                   <button
                     onClick={() => {
                       if (

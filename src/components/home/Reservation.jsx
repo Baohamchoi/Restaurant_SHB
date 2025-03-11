@@ -18,7 +18,9 @@ const Reservation = () => {
               { label: "Phone", type: "tel", placeholder: "Your Phone" },
             ].map((field, index) => (
               <div key={index}>
-                <label className="block text-gray-700 mb-2">{field.label}</label>
+                <label className="block text-gray-700 mb-2">
+                  {field.label}
+                </label>
                 <input
                   type={field.type}
                   className="w-full px-4 py-2 border border-gray-300 rounded"
@@ -27,7 +29,9 @@ const Reservation = () => {
               </div>
             ))}
             <div>
-              <label className="block text-gray-700 mb-2">Number of Guests</label>
+              <label className="block text-gray-700 mb-2">
+                Number of Guests
+              </label>
               <select className="w-full px-4 py-2 border border-gray-300 rounded">
                 <option>1 Person</option>
                 <option>2 People</option>
@@ -37,7 +41,9 @@ const Reservation = () => {
               </select>
             </div>
             <div className="md:col-span-2">
-              <label className="block text-gray-700 mb-2">Special Request</label>
+              <label className="block text-gray-700 mb-2">
+                Special Request
+              </label>
               <textarea
                 className="w-full px-4 py-2 border border-gray-300 rounded h-32"
                 placeholder="Your Message"
